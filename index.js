@@ -1,7 +1,46 @@
-import { mensagem } from "./aula.js";
-import chalk from 'chalk';
+//Primeira linha do seu projeto. Carrega as variáveis de ambiente antes de qualquer outro código
+import 'dotenv/config';
 
+//Importação para todas as dependências.
+//1. Importa a ferramenta Express
+import express from 'express';
 
-mensagem(chalk.green("Sandro"))
+//import chalk from 'chalk';
+import { pizzas } from "./cardapio.js";
+//import { pedirPizza } from "./fazerpizza.js";
+//mensagem(chalk.blue("Tânia"))
+//pizzas.forEach(element => {
+//    console.log(`${element.id}-${chalk.blue(element.sabor)} = ${chalk.grey(element.preco)} `)
+//});
+//pedirPizza()
+// 2. Cria a nossa aplicação (nosso servidor)
+// *** Inicialização APP
+const app = express()
+//Habilita o Express para entender o formato JSON no corpo da requisições
+app.use(express.json())
 
-console.log(chalk.blue("Bem Vindo"))
+// rota principal da aplicação
+app.get('/',(req,res)=>{
+    res.json({message:"Bem Vindo à Pizzaria Senac!"});
+});
+
+//**** Inicialização do Servidor */
+// 3. Define a porta em que o servidor vai "escutar" os pedidos
+const PORTA = process.env.PORT
+// 4. Manda o servidor ficar "escutando" na porta definida
+app.listen(PORTA,() =>{
+    console.log(`Servidor rodando na porta ${PORTA}`)
+});
+// Rota para listar Todos os clientes (seu código original)
+app.get('/pizzas',(req,res)=>{
+    res.json(pizzas);
+})
+// Listar uma unica pizza pelo id:
+app.get('/pizzas/:id',(req,res)=>{
+    const id = parseInt(req.params.id);
+    const pizza = pizzas.find(p=>p.id === id);
+    if (!pizza) {
+        return res.status(404).json({error:'Pizza não encontrada'});
+    }
+    res.json(pizza)
+})
