@@ -1,18 +1,14 @@
 //Primeira linha do seu projeto. Carrega as variáveis de ambiente antes de qualquer outro código
-import 'dotenv/config';
-
 //Importação para todas as dependências.
 //1. Importa a ferramenta Express
-import express from 'express';
-
-//import chalk from 'chalk';
-import { pizzas } from "./cardapio.js";
-//import { pedirPizza } from "./fazerpizza.js";
-//mensagem(chalk.blue("Tânia"))
-//pizzas.forEach(element => {
-//    console.log(`${element.id}-${chalk.blue(element.sabor)} = ${chalk.grey(element.preco)} `)
-//});
-//pedirPizza()
+import chalk from 'chalk';
+import { pizzas } from "../cardapio.js";
+import { pedirPizza } from "./fazerpizza.js";
+mensagem(chalk.blue("Tânia"))
+pizzas.forEach(element => {
+   console.log(`${element.id}-${chalk.blue(element.sabor)} = ${chalk.grey(element.preco)} `)
+   });
+pedirPizza()
 // 2. Cria a nossa aplicação (nosso servidor)
 // *** Inicialização APP
 const app = express()
