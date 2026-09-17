@@ -27,7 +27,7 @@ if (email) {
 }
 //5. Se houver condições, anexa elas às consulta SQL
 if (conditions.length>0) {
-    sql+= 'WHERE' + conditions.join('AND');
+    sql+= ' WHERE ' + conditions.join(' AND ');
 }
 //6. Executa a consulta final
 const [rows] = await db.query(sql,values);
@@ -71,7 +71,7 @@ export const listarClientes = async (req, res) =>{
         //Lista vazia é uma resposta válida: 200 com []
         res.json(clientes);
     } catch (err){
-        console.error('Erroao buscar cliente', err);
-        res.status(500).json({error: 'Erro internodo servidor'});
+        console.error('Erro ao buscar cliente', err);
+        res.status(500).json({error: 'Erro interno do servidor'});
     }
 };

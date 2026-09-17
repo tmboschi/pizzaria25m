@@ -12,9 +12,9 @@ import { fileURLToPath } from 'url';
 // Importar as rotas
 //Importar as rotas de autenticação
 //import authRotes from './routes/authRoutes.js';
-//import clientes from './routes/clienteRoutes.js';
-//import produtos from './routes/produtoRoutes.js';
-//import pedidos from './routes/pedidoRoutes.js';
+import clientes from './routes/clienteRoutes.js';
+import produtos from './routes/produtoRoutes.js';
+import pedidos from './routes/pedidoRoutes.js';
 
 // --- Configurações ---
 const __filename = fileURLToPath(import.meta.url);
@@ -46,13 +46,13 @@ app.get('/',(req,res)=>{
 // Rotas da API prefixadas, isso evita conflitos e deixa claro quais rotas pertencem à API.
 const apiPrefix = '/api';
 //Rotas gerais da API(ex: /api/sandro)
-//app.use(`${apiPrefix}/clientes`, clienteRoutes);
+app.use(`${apiPrefix}/clientes`, clientes);
 
 //app.use(`${apiPrefix}/login`, authRoutes);
 
-//app.use(`${apiPrefix}/produtos`, produtoRoutes);
+app.use(`${apiPrefix}/produtos`, produtos);
 
-//app.use(`${apiPrefix}/pedidos`, pedidoRoutes);
+app.use(`${apiPrefix}/pedidos`, pedidos);
 
 //Tratamento de ERROS
 
