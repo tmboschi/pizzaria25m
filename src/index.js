@@ -15,6 +15,7 @@ import { fileURLToPath } from 'url';
 import clientes from './routes/clienteRoutes.js';
 import produtos from './routes/produtoRoutes.js';
 import pedidos from './routes/pedidoRoutes.js';
+import entregador from './routes/entregadorRoutes.js';
 
 // --- Configurações ---
 const __filename = fileURLToPath(import.meta.url);
@@ -53,6 +54,8 @@ app.use(`${apiPrefix}/clientes`, clientes);
 app.use(`${apiPrefix}/produtos`, produtos);
 
 app.use(`${apiPrefix}/pedidos`, pedidos);
+
+app.use(`${apiPrefix}/entregador`, entregador);
 
 //Tratamento de ERROS
 

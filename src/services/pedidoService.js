@@ -39,7 +39,7 @@ return rows;
 export const create = async (pedidoData)=>{
    
    
-    const newCliente ={
+    const newPedido ={
         ...pedidoData,
         
     };

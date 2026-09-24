@@ -10,7 +10,7 @@ export const pedidoCreateSchema = Joi.object({
     idPedido: Joi.string().required(),
     formaPagto: Joi.string().required().max(10),
     valorTotal: Joi.number().required(),
-    idEntregador: Joi.number().required(),
+    idEntregador: Joi.string().required(),
     cpf: Joi.string().required().length(11),
     statusPedido: Joi.string().required().max(20),
     formaEntrega: Joi.string().required().max(15),
