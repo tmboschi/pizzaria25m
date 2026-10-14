@@ -8,6 +8,7 @@ import Joi from 'joi';
 // Criação de schemas que o validate irá usar para validar dados do usuário
 export const clienteCreateSchema = Joi.object({
     cpf: Joi.string().length(11).required(),
+    nome:Joi.string().required().max(100),
     endereco: Joi.string().required(),
     bairro: Joi.string().required(),
     cidade: Joi.string().required(),
@@ -18,10 +19,11 @@ export const clienteCreateSchema = Joi.object({
     tipo: Joi.string().required().max(10),
 });
 export const clienteUpdateSchema = Joi.object({
-   endereco: Joi.string(),
+    nome: Joi.string().max(100),
+    endereco: Joi.string(),
     bairro: Joi.string(),
     cidade: Joi.string(),
-    cep: Joi.string().required(),
+    cep: Joi.string(),
     telefone: Joi.string(),
     email: Joi.string().email(),
     senha: Joi.string().min(6), 

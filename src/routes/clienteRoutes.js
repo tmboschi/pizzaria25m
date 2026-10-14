@@ -13,6 +13,7 @@ const router = express.Router();
  
 // A rota de criação de cliente (registro) continua pública
 router.post('/', validate(clienteCreateSchema),clienteController.adicionarCliente); // Rota final:post/api/clientes
+
 router.use(authMiddleware) ; 
 // 2. Aplica a protecão do login en todas as rotas abaixo desta linha
 //router.use(authMiddleware);// // descomentar para funcionar
@@ -23,5 +24,5 @@ router.get('/', clienteController.listarClientes);//Rota final: GET /api/cliente
  
 router.put('/:cpf', validate(clienteUpdateSchema),clienteController.atualizarCliente);//Rota final: PUT / api/clientes/:cpf
  
-router.delete('/cpf', clienteController.deletarCliente); //Rota final: DELETE / api/clientes/:cpf
+router.delete('/:cpf', clienteController.deletarCliente); //Rota final: DELETE / api/clientes/:cpf
 export default router;

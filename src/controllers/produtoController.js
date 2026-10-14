@@ -18,7 +18,7 @@ export const produtoUpdateSchema = Joi.object({
     nomeProduto: Joi.string(),
     descricao: Joi.string(),
     tipo: Joi.string(),
-    valor: Joi.number().required(),
+    valor: Joi.number(),
     imagem: Joi.string(),
    }).min(1);
 
@@ -28,7 +28,7 @@ export const listarProduto = async (req, res) => {
         // ex: ?cpf=0123456789 / ?nome=ivan / ?email-ivan@senac.br
         const {idProduto, nomeProduto, tipo } = req.query;
         //Passamos todos os filtros para o serviço
-        const produto = await produtoService.findAll(idProduto,nomeProduto , tipo);
+        const produto = await produtoService.findAll(idProduto,nomeProduto,tipo);
         //Lista vazia é uma resposta válida: 200 com []
         res.json(produto);
     } catch (err) {
@@ -47,7 +47,7 @@ export const adicionarProduto = async (req, res) => {
         if (err.code === 'ER_DUP_Entry') {
             return res.status(409).json({error: 'Produto já cadastrado.'});
         }
-        res.status(500).json({error: 'Erro ao adicinar produto'});
+        res.status(500).json({error: 'Erro ao adicionar produto'});
     }
 };
  

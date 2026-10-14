@@ -2,7 +2,7 @@
 import jwt from 'jsonwebtoken';
 const authMiddleware =(req, res, next)=>{
     //1. Buscar o token no cabeçalho da requisição
-    const authHeader = req.headers. authorization;
+    const authHeader = req.headers.authorization;
     if (!authHeader) {
         return res.status(401).json({message: 'Token de autenticação não fornecido.'});
     }
@@ -24,7 +24,7 @@ const authMiddleware =(req, res, next)=>{
         req.userCpf = decoded.cpf;
         req.userEmail = decoded.email;
         //4. Chama o próximo middleware ou o controlador final
-        return next
+        return next();
     });
 };
 export default authMiddleware;
